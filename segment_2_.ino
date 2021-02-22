@@ -30,15 +30,26 @@ void setup() {
   digitalWrite(5,LOW);
   Serial.begin(9600);
 }
-
-int num=0;
+int num=12;
+int num1=0;
+int num2=0;
+unsigned long time=0;
 void loop() {
-  int count=0;
-  if(Serial.available()){
-    num=Serial.parselnt();
+  if(num>99){
+    num=0;
   }
-  num1=num/10;
-  num2=num%10;
+  printNum(num);
+ if(millis()-time>1000){
+  time=millis();
+  num++;
+  Serial.println(time);
+ }
+}
+
+void printNum(int di){
+  int count=0;
+  num1=di/10;
+  num2=di%10;
   digitalWrite(5,LOW);
   digitalWrite(6,HIGH);
   for(int i=13;i>6;i--){
